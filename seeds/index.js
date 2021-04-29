@@ -16,15 +16,20 @@ db.once("open", () => {
 });
 const sample = array => array[Math.floor(Math.random()*array.length)];
 const seedDb = async () => {
+    await Campground.deleteMany({});
     for(let i = 0; i < 50; i++) { 
         const rand1000 = Math.floor(Math.random()*1000);
         const price = Math.floor(Math.random()*20) + 10;
         const camp = new Campground ({
-            author: '607bc381b57cd68853738642',
+            author: '6076f183f5439c368f823ed1',
             title: `${sample(descriptors)} ${sample(places)}`,
             location: `${cities[rand1000].city}, ${cities[rand1000].state}`,
             description: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rem ipsa reprehenderit qui modi sed sint beatae quas. Dolorem iure distinctio consequuntur officiis eaque quis, aliquam facilis at. Qui, distinctio rerum.',
             price,
+            geometry: {
+                type: "Point",
+                coordintates: [-113.1331, 47.0202]
+            },
             images: [ {
                 url:
                  'https://res.cloudinary.com/ojhaakshat/image/upload/v1618469724/YelpCamp/zhaayotpiieg91p9x3jp.png',
